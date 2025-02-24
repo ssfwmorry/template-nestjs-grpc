@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package api.common;
+
+import "google/protobuf/timestamp.proto";
+
+message CreatedAt {
+  google.protobuf.Timestamp value = 1;
+}
+message UpdatedAt {
+  google.protobuf.Timestamp value = 1;
+}

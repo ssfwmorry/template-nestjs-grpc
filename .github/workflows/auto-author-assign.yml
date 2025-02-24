@@ -1,0 +1,16 @@
+# Automatically add assignees when creating a pull request.
+# cf. https://www.notion.so/GitHub-Actions-auto-author-assign-96801c715cf34c59927ac2149af69dad
+name: "Auto Author Assign"
+
+on:
+  pull_request_target:
+    types: [opened, reopened]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  assign-author:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: toshimaru/auto-author-assign@v2.1.0

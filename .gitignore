@@ -1,0 +1,14 @@
+# Generated files
+/dist
+/node_modules
+/build
+/.pnpm-store
+
+# Mac settings
+.DS_Store
+
+# env files
+.env
+
+# Tests
+/coverage

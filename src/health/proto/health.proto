@@ -1,0 +1,27 @@
+/*
+ * This file defines the health check API.
+ * The interface are defined based on https://github.com/grpc/grpc/blob/4cf2759096c9567853098dc967dfd35e377c5c49/doc/health-checking.md
+ *
+ * Please run below command to generate typescript code in the directory where this file is located.
+ * ```
+ * protoc --proto_path=./ --ts_proto_opt=nestJs=true --plugin=../../../node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=../proto-gen ./health.proto
+ * ```
+ */
+
+syntax = "proto3";
+package health;
+import "google/protobuf/empty.proto";
+
+message HealthCheckResponse {
+  enum ServingStatus {
+    UNKNOWN = 0;
+    SERVING = 1;
+    NOT_SERVING = 2;
+  }
+
+  ServingStatus status = 1;
+}
+
+service Health {
+  rpc Check (google.protobuf.Empty) returns (HealthCheckResponse);
+}

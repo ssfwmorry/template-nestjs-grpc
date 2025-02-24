@@ -1,0 +1,21 @@
+# ref: https://qiita.com/trackiss/items/02eefc2ab8ccfd41768c
+name: Trial Template
+
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: write
+
+jobs:
+  dummy:
+    if: ${{ github.ref != 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    environment: develop
+
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3

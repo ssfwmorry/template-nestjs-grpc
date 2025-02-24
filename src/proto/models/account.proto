@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package api.models;
+
+import "common/time.proto";
+
+message Account {  
+  int32 id = 1;
+  string name = 2;
+  common.CreatedAt created_at = 3;
+  common.UpdatedAt updated_at = 4;
+}

@@ -1,0 +1,10 @@
+/*
+ * All service definitions in the api package are consolidated here.
+ * In this file, do not declare messages; only perform imports.
+ */
+
+syntax = "proto3";
+
+package api;
+
+import "services/account.proto";

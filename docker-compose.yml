@@ -1,0 +1,24 @@
+services:
+  protoc-runner:
+    container_name: protoc-runner
+    image: node:22.13.0-alpine3.21
+    profiles:
+      - protobuf
+    working_dir: /app
+    volumes:
+      - ${PWD}:/app:delegated
+    entrypoint: ["sh", "-c"]
+    command: [
+        " \
+        cd ../ && \
+        mkdir -p ./protoc && \
+        apk add unzip && \
+        apk add curl && \
+        curl -L https://github.com/protocolbuffers/protobuf/releases/download/v27.3/protoc-27.3-linux-x86_64.zip -o protoc.zip && \
+        unzip protoc.zip && \
+        cp -r bin/* /usr/local/bin/ && \
+        cp -r include/* /usr/local/include/ && \
+        cd ./app && \
+        pwd && protoc --version && \
+        protoc --proto_path=./src/proto --ts_proto_opt=nestJs=true,addGrpcMetadata=true --plugin=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=./src/proto-gen ./src/proto/*.proto",
+      ]
